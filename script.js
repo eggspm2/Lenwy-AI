@@ -35,13 +35,13 @@ function appendTypingBubble() {
 
 async function fetchAIResponse(message, typingBubble) {
     try {
-        const response = await fetch(`https://api-lenwy.vercel.app/lenai?text=${encodeURIComponent(message)}`);
+        const response = await fetch(`https://api-lenwy.vercel.app/blackbox?text=${encodeURIComponent(message)}`);
         const data = await response.json();
 
         // Setelah LenwyLD
         typingBubble.remove();
 
-        appendMessage('ai', data.data || 'No response received');
+        appendMessage('ai', data.data.response || 'No response received');
     } catch (error) {
         typingBubble.remove();
         appendMessage('ai', 'Error: Unable to connect to the API');
